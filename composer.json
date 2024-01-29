@@ -1,0 +1,6 @@
+{
+    "require": {
+        "php-tui/php-tui": "^0.1.0",
+        "nikic/php-parser": "^5.0"
+    }
+}
