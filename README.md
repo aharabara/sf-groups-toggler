@@ -1,4 +1,7 @@
-**USAGE**: `php ./parser ./path/to/php/file.php <propertyName> <list of comma separated groups without spaces>`
+**USAGE**:
+
+`php ./parser ./path/to/php/file.php <propertyName> <list of comma separated groups without spaces>`
+
 **EX:**
 ```
 php ./parser ./entity.php slug read,edit,list  # will add 3 groups
