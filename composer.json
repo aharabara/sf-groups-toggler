@@ -1,6 +1,14 @@
 {
+    "autoload" : {
+        "psr-4" : {
+            "App\\" : "src" 
+        }
+    },
     "require": {
         "php-tui/php-tui": "^0.1.0",
-        "nikic/php-parser": "5.0"
+        "nikic/php-parser": "5.0",
+        "symfony/var-dumper": "^7.0",
+        "php-tui/term": "^0.3.2",
+        "php-tui/cassowary": "^0.1.0"
     }
 }
