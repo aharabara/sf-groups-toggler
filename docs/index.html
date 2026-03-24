@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SF Groups Toggler</title>
+  <meta name="description" content="A CLI tool to toggle Symfony serialization groups on PHP entity properties." />
+  <meta name="theme-color" content="#6c63ff" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="40" height="40" rx="10" fill="#6c63ff"/>
+          <path d="M10 20h20M20 10v20" stroke="white" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="20" cy="20" r="4" fill="white"/>
+        </svg>
+        <span>SF Groups Toggler</span>
+      </div>
+      <nav>
+        <a href="#usage">Usage</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="https://github.com/aharabara/sf-groups-toggler" target="_blank" rel="noopener">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>Toggle Symfony Groups<br /><span>from the command line</span></h1>
+        <p class="subtitle">
+          A fast PHP CLI tool that adds or removes <code>#[Groups]</code> attributes on
+          Symfony entity properties — in place, preserving your code formatting.
+        </p>
+        <div class="cta-buttons">
+          <a href="https://github.com/aharabara/sf-groups-toggler" class="btn btn-primary" target="_blank" rel="noopener">
+            View on GitHub
+          </a>
+          <a href="#usage" class="btn btn-secondary">Get Started</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="usage" class="section">
+      <div class="container">
+        <h2>Usage</h2>
+        <p>Install the dependencies, then run the parser against any PHP entity file:</p>
+        <pre><code>composer install
+
+php ./parse.php ./path/to/entity.php &lt;property&gt; &lt;groups&gt;</code></pre>
+
+        <h3>Examples</h3>
+        <div class="examples">
+          <div class="example-card">
+            <div class="example-label">Add groups</div>
+            <pre><code>php ./parse.php ./entity.php slug read,edit,list</code></pre>
+            <p>Adds <code>read</code>, <code>edit</code>, and <code>list</code> to the <code>slug</code> property.</p>
+          </div>
+          <div class="example-card">
+            <div class="example-label">Remove a group</div>
+            <pre><code>php ./parse.php ./entity.php slug edit</code></pre>
+            <p>Removes <code>edit</code> from the <code>slug</code> property if it already exists.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="section section-alt">
+      <div class="container">
+        <h2>How it works</h2>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">➕</div>
+            <h3>Add groups</h3>
+            <p>If the specified groups are <strong>not present</strong> on the property, they are automatically added.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✂️</div>
+            <h3>Remove groups</h3>
+            <p>If the specified groups <strong>already exist</strong>, they are removed — a true toggle.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Format-preserving</h3>
+            <p>Uses <a href="https://github.com/nikic/PHP-Parser" target="_blank" rel="noopener">nikic/php-parser</a> to rewrite only what is necessary, keeping all other formatting intact.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Before &amp; After</h2>
+        <div class="diff-container">
+          <div class="diff-side">
+            <div class="diff-label before">Before</div>
+            <pre><code>#[ORM\Column(length: 255)]
+private ?string $slug = null;</code></pre>
+          </div>
+          <div class="diff-arrow">→</div>
+          <div class="diff-side">
+            <div class="diff-label after">After</div>
+            <pre><code>#[ORM\Column(length: 255)]
+#[Groups(['read', 'edit', 'list'])]
+private ?string $slug = null;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        Released under the <a href="https://github.com/aharabara/sf-groups-toggler/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.
+        Built for the Symfony community.
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

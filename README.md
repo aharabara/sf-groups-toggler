@@ -1,9 +1,31 @@
-**USAGE**:
+# SF Groups Toggler
 
-`php ./parser ./path/to/php/file.php <propertyName> <list of comma separated groups without spaces>`
+A CLI tool to toggle Symfony serialization groups on PHP entity properties.
 
-**EX:**
+## Installation
+
+```bash
+composer install
 ```
-php ./parser ./entity.php slug read,edit,list  # will add 3 groups
-php ./parser ./entity.php slug edit            # will remove 'edit' group, but will preserve previous 2 groups
-     
+
+## Usage
+
+```bash
+php ./parse.php ./path/to/entity.php <propertyName> <comma-separated-groups>
+```
+
+### Examples
+
+```bash
+# Add 3 groups to the 'slug' property
+php ./parse.php ./entity.php slug read,edit,list
+
+# Toggle 'edit' group (removes it if present, adds it if absent)
+php ./parse.php ./entity.php slug edit
+```
+
+## How It Works
+
+- If the specified groups **are not present** on the property, they are **added**.
+- If the specified groups **are already present**, they are **removed** (toggle).
+- The file is modified in-place while preserving the original formatting.
