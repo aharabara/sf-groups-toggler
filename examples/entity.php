@@ -18,12 +18,13 @@ class Article
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(["test", "test2"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['read', 'list'])]
     private ?string $slug = null;
 
+    #[ORM\Column(length: 255)]
     #[Groups(['delete', 'create', 'read'])]
     private ?string $slug2 = null;
 

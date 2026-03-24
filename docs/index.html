@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sf-groups-toggler 🐾</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <span class="paw">🐾</span>
+      <h1>sf-groups-toggler</h1>
+      <p class="tagline">Toggle Symfony serialization groups on your entity properties — right from the command line.</p>
+      <a class="btn" href="https://github.com/aharabara/sf-groups-toggler">View on GitHub</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <h2>What is it?</h2>
+      <p>
+        <strong>sf-groups-toggler</strong> is a CLI tool that reads a PHP entity file and adds or removes
+        Symfony serialization <code>#[Groups([...])]</code> attributes on a chosen property —
+        all while preserving your original code formatting.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Installation</h2>
+      <pre><code>git clone https://github.com/aharabara/sf-groups-toggler.git
+cd sf-groups-toggler
+composer install</code></pre>
+    </section>
+
+    <section class="section">
+      <h2>Usage</h2>
+      <pre><code>php ./bin/parser &lt;path/to/entity.php&gt; &lt;propertyName&gt; &lt;group1,group2,...&gt;</code></pre>
+      <p><em>Groups must be comma-separated with <strong>no spaces</strong>.</em></p>
+
+      <h3>Examples</h3>
+      <div class="examples">
+        <div class="example">
+          <p class="example-title">Add groups <code>read</code>, <code>edit</code>, <code>list</code> to the <code>slug</code> property:</p>
+          <pre><code>php ./bin/parser ./examples/entity.php slug read,edit,list</code></pre>
+        </div>
+        <div class="example">
+          <p class="example-title">Toggle (remove) the <code>edit</code> group while keeping the rest:</p>
+          <pre><code>php ./bin/parser ./examples/entity.php slug edit</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>How it works</h2>
+      <ol>
+        <li>The tool parses the target PHP file using <a href="https://github.com/nikic/PHP-Parser">nikic/php-parser</a>.</li>
+        <li>It locates the property you specify.</li>
+        <li>
+          If the property already has a <code>#[Groups([...])]</code> attribute:
+          <ul>
+            <li>Groups that are already present are <strong>removed</strong> (toggle off).</li>
+            <li>Groups that are not yet present are <strong>added</strong> (toggle on).</li>
+          </ul>
+        </li>
+        <li>The file is rewritten using format-preserving pretty-printing — your original style is kept intact.</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2>Example entity</h2>
+      <pre><code>#[ORM\Column(length: 255)]
+#[Groups(['delete', 'create', 'read'])]
+private ?string $slug = null;</code></pre>
+      <p>After running <code>php ./bin/parser entity.php slug edit</code>:</p>
+      <pre><code>#[ORM\Column(length: 255)]
+#[Groups(['delete', 'create', 'read', 'edit'])]
+private ?string $slug = null;</code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <span class="paw">🐾</span>
+    <p>Made with ❤️ &amp; PHP &nbsp;·&nbsp; <a href="https://github.com/aharabara/sf-groups-toggler/blob/main/LICENSE">MIT License</a></p>
+  </footer>
+</body>
+</html>

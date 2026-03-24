@@ -58,28 +58,13 @@ final class App
         $terminal = $terminal ?? Terminal::new();
         $pages = [];
 
-        // build up an exhaustive set of pages
         foreach (ActivePage::cases() as $case) {
             $pages[$case->name] = match ($case) {
-                // ActivePage::Events => new EventsPage(),
-                // ActivePage::Canvas => new CanvasPage(),
-                // ActivePage::Chart => new ChartPage(),
-                // ActivePage::List => new ItemListPage(),
                 ActivePage::Table => new TablePage(),
-                // ActivePage::Blocks => new BlocksPage(),
-                // ActivePage::Sprite => new SpritePage(),
-                // ActivePage::Colors => new ColorsPage(),
-                // ActivePage::Images => new ImagePage(),
-                // ActivePage::CanvasScaling => new CanvasScalingPage($terminal),
-                // ActivePage::Gauge => new GaugePage(),
-                // ActivePage::BarChart => new BarChartPage(),
-                // ActivePage::Sparkline => new SparklinePage(),
             };
         }
 
         $display = DisplayBuilder::default($backend ?? PhpTuiPhpTermBackend::new($terminal))
-            //->addExtension(new ImageMagickExtension())
-            //->addExtension(new BdfExtension())
             ->build();
 
         return new self(
@@ -126,45 +111,9 @@ final class App
                         if ($event->char === 'q') {
                             break 2;
                         }
-                        // if ($event->char === '1') {
-                        //     $this->activePage = ActivePage::Events;
-                        // }
-                        // if ($event->char === '2') {
-                        //     $this->activePage = ActivePage::Canvas;
-                        // }
-                        // if ($event->char === '3') {
-                        //     $this->activePage = ActivePage::Chart;
-                        // }
-                        // if ($event->char === '4') {
-                        //     $this->activePage = ActivePage::List;
-                        // }
                         if ($event->char === '5') {
                             $this->activePage = ActivePage::Table;
                         }
-                        // if ($event->char === '6') {
-                        //     $this->activePage = ActivePage::Blocks;
-                        // }
-                        // if ($event->char === '7') {
-                        //     $this->activePage = ActivePage::Sprite;
-                        // }
-                        // if ($event->char === '8') {
-                        //     $this->activePage = ActivePage::Colors;
-                        // }
-                        // if ($event->char === '9') {
-                        //     $this->activePage = ActivePage::Images;
-                        // }
-                        // if ($event->char === '0') {
-                        //     $this->activePage = ActivePage::CanvasScaling;
-                        // }
-                        // if ($event->char === '!') {
-                        //     $this->activePage = ActivePage::Gauge;
-                        // }
-                        // if ($event->char === '"') {
-                        //     $this->activePage = ActivePage::BarChart;
-                        // }
-                        // if ($event->char === '£') {
-                        //     $this->activePage = ActivePage::BarChart;
-                        // }
                     }
                 }
                 if ($event instanceof CodedKeyEvent) {

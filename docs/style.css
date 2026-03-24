@@ -1,0 +1,154 @@
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #0d1117;
+  --surface:   #161b22;
+  --border:    #30363d;
+  --text:      #e6edf3;
+  --muted:     #8b949e;
+  --accent:    #58a6ff;
+  --accent-h:  #1f6feb;
+  --code-bg:   #1f2937;
+  --radius:    8px;
+  --max-w:     860px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Header ───────────────────────────────────────────────── */
+header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 3rem 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.header-inner { max-width: var(--max-w); margin: 0 auto; }
+
+.paw { font-size: 2.5rem; display: block; margin-bottom: 0.5rem; }
+
+header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.6rem;
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--accent-h);
+  color: #fff;
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.15s;
+}
+
+.btn:hover { background: var(--accent); text-decoration: none; }
+
+/* ── Main content ─────────────────────────────────────────── */
+main {
+  max-width: var(--max-w);
+  margin: 2.5rem auto;
+  padding: 0 1.5rem;
+}
+
+.section { margin-bottom: 2.5rem; }
+
+.section h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.section h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 1.2rem 0 0.6rem;
+}
+
+p { margin-bottom: 0.75rem; }
+
+ol, ul {
+  padding-left: 1.4rem;
+  margin-bottom: 0.75rem;
+}
+
+li { margin-bottom: 0.3rem; }
+
+/* ── Code blocks ──────────────────────────────────────────── */
+pre {
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  overflow-x: auto;
+  margin-bottom: 0.75rem;
+}
+
+pre code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.875rem;
+  color: #e6edf3;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.875em;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+/* ── Examples cards ───────────────────────────────────────── */
+.examples { display: grid; gap: 1rem; }
+
+.example {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+}
+
+.example-title {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 1.5rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+footer .paw { font-size: 1.4rem; margin-bottom: 0.3rem; }
+
+footer a { color: var(--muted); }
+footer a:hover { color: var(--accent); }

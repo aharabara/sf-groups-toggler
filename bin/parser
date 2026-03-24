@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 
 use PhpParser\Node;
@@ -10,14 +11,7 @@ use PhpParser\NodeVisitorAbstract;
 use PhpParser\ParserFactory;
 use PhpParser\PrettyPrinter\Standard;
 
-require_once __DIR__ . "/vendor/autoload.php";
-
-/*
- * USAGE: php ./parser ./path/to/php/file.php <propertyName> <list of comma separated groups without spaces>
- * EX: php ./parser ./entity.php slug read,edit,list  -> will add 3 groups
- *     php ./parser ./entity.php slug edit            -> will remove 'edit' group, but will preserve previous 2 groups
- *
- * */
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $parser = (new ParserFactory())->createForHostVersion();
 
@@ -83,7 +77,6 @@ $traverser->addVisitor(new class ($expectedProp, $groups) extends NodeVisitorAbs
     public function leaveNode(Node $node): Node|Node\Attribute|Property|int|null
     {
         if ($node instanceof Node\Attribute) {
-            //            print $this->printer->prettyPrint([$node]) . PHP_EOL;
             return $this->handleAttribute($node);
         }
         if ($node instanceof Node\AttributeGroup) {
@@ -129,8 +122,6 @@ $traverser->addVisitor(new class ($expectedProp, $groups) extends NodeVisitorAbs
         } else {
             array_push($expr->value->items, ...array_map($this->factory->val(...), $this->groups));
         }
-        //        $argsAsStr = $this->printer->prettyPrint($node->args);
-        //        print "> {$this->expectedProp} #{$node->name}($argsAsStr)" . PHP_EOL;
 
         $this->groupWasModified = true;
 
@@ -159,6 +150,4 @@ $prettyPrinter = new Standard();
 
 $oldAst = $traverser->traverse($oldAst);
 
-//print $prettyPrinter->prettyPrint($oldAst, $oldAst, $oldTokens);
 file_put_contents($path, $prettyPrinter->printFormatPreserving($oldAst, $oldAst, $oldTokens));
-//`php-cs-fixer fix $path &>/dev/null`;
