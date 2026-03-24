@@ -1,9 +1,9 @@
-**USAGE**:
+This repository now hosts the **sf-groups-toggler** GitHub Pages site.
 
-`php ./bin/parser ./path/to/php/file.php <propertyName> <list of comma separated groups without spaces>`
+## Local preview
 
-**EX:**
-```
-php ./bin/parser ./examples/entity.php slug read,edit,list  # will add 3 groups
-php ./bin/parser ./examples/entity.php slug edit            # will remove 'edit' group, but will preserve previous 2 groups
-     
+Open the static page in `docs/index.html` in your browser.
+
+## GitHub Pages
+
+Configure GitHub Pages to deploy from the `docs/` folder of the default branch.
