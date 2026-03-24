@@ -1,0 +1,25 @@
+{
+  "name": "SF Groups Toggler",
+  "short_name": "SF Groups",
+  "description": "A CLI tool to toggle Symfony serialization groups on PHP entity properties.",
+  "start_url": "/sf-groups-toggler/",
+  "scope": "/sf-groups-toggler/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6c63ff",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
