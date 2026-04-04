@@ -1,9 +1,17 @@
-This repository now hosts the **sf-groups-toggler** GitHub Pages site.
+# sf-groups-toggler 🐾
 
-## Local preview
-
-Open the static page in `docs/index.html` in your browser.
+Toggle Symfony serialization groups on your entity properties — right from the command line.
 
 ## GitHub Pages
 
-Configure GitHub Pages to deploy from the `docs/` folder of the default branch.
+The project website is served from the `docs/` folder via GitHub Pages.
+
+**Live site:** https://aharabara.github.io/sf-groups-toggler/
+
+### Local preview
+
+Open `docs/index.html` directly in your browser.
+
+## License
+
+[MIT](LICENSE)
